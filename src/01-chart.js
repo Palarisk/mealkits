@@ -1,3 +1,5 @@
+//FAT GRAPH
+
 import * as d3 from 'd3'
 
 const margin = {
@@ -60,7 +62,6 @@ function ready(datapoints) {
       }
   })
     .style('visibility', 'hidden')
-    .transition()
 
   svg
     .append('line')
@@ -139,7 +140,7 @@ function ready(datapoints) {
     d3.select('#most-fat').on('stepin', () => {
     svg
       .selectAll('.company')
-      .transition()
+      
     .style('visibility', d=>{
       if (d.company === 'Company2') {
         return  'visible'
@@ -163,6 +164,16 @@ function ready(datapoints) {
     svg
       .selectAll('.company')
     .style('visibility', 'visible')
+    .attr('opacity', d=>{
+      if (d.company === 'Company2') {
+        return  1
+      } else {
+        return 0
+      }
+      })
+      .transition()
+      .duration(1000)
+      .attr('opacity', 1)
         
   })
 
@@ -172,6 +183,11 @@ function ready(datapoints) {
       svg
       .selectAll('.fattiestMeal')
       .style('visibility', 'visible')
+      .attr('opacity', 0)
+      .transition()
+      .duration(1000)
+      .attr('opacity', 1)
+
  })
 .on('stepout', () => {
 
